@@ -1,163 +1,1310 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IDEA VECTOR</title>
-  <style>
-    :root{
-      --ivory:#F6F3ED;
-      --lilac:#D9D2F1;
-      --cobalt:#2D49C7;
-      --navy:#121A39;
-      --ink:#101522;
-      --line:rgba(18,26,57,.22);
-      --paper:#FBFAF6;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:Pretendard,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-      color:var(--ink);
-      background:var(--ivory);
-      font-weight:300;
-      overflow-x:hidden;
-    }
-    body.menu-open{overflow:hidden}
-    a{color:inherit;text-decoration:none}
-    button{font:inherit}
+<title>IDEA VECTOR — Portfolio</title>
 
-    .header{position:fixed;z-index:80;inset:0 0 auto 0;height:76px;display:flex;align-items:center;border-bottom:1px solid rgba(18,26,57,.12);background:rgba(246,243,237,.78);backdrop-filter:blur(16px)}
-    .header-inner{width:min(1440px,calc(100% - 72px));margin:auto;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-size:15px;letter-spacing:.22em;font-weight:500}
-    .brand small{display:block;margin-top:3px;font-size:9px;letter-spacing:.3em;opacity:.55;font-weight:400}
-    .hamburger{width:46px;height:46px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;padding:0}
-    .hamburger span,.hamburger::before,.hamburger::after{content:"";display:block;width:27px;height:1px;background:var(--navy);transition:.25s ease}
-    .hamburger span{margin:6px 0}
+<style>
+:root{
+  --bg:#f5f2eb;
+  --paper:#fbfaf6;
+  --ink:#12162a;
+  --navy:#151d3f;
+  --blue:#3457d5;
+  --purple:#bbb2e8;
+  --line:rgba(18,22,42,.16);
+}
 
-    .bulb-rail{position:fixed;z-index:40;top:96px;right:34px;width:118px;height:calc(100vh - 130px);border-left:1px solid rgba(18,26,57,.16);pointer-events:none}
-    .bulb-track-label{position:absolute;right:132px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:center;white-space:nowrap;font-size:9px;letter-spacing:.28em;color:rgba(18,26,57,.45)}
-    .bulb{position:absolute;left:-48px;bottom:0;width:96px;height:150px;transform-origin:50% 65%;will-change:transform}
-    .bulb-globe{position:absolute;top:0;left:5px;width:86px;height:86px;border-radius:50%;background:var(--cobalt)}
-    .bulb-neck{position:absolute;top:78px;left:29px;width:38px;height:42px;background:var(--lilac)}
-    .bulb-base{position:absolute;top:118px;left:34px;width:28px;height:28px;background:var(--navy)}
+*{
+  box-sizing:border-box;
+}
 
-    .geo-line{position:absolute;height:1px;background:var(--navy);opacity:.28;transform-origin:left center}
-    .section{position:relative;min-height:100vh;padding:138px 110px 90px 8vw;overflow:hidden;border-bottom:1px solid rgba(18,26,57,.12)}
-    .section-inner{position:relative;z-index:4;width:min(1220px,calc(100vw - 250px));min-height:calc(100vh - 228px)}
-    .section-index{font-size:10px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:26px;font-weight:500;opacity:.55}
-    h1,h2,h3,p{margin:0}
-    .hero-title{max-width:980px;font-size:clamp(62px,7.2vw,118px);line-height:.94;letter-spacing:-.065em;font-weight:300}
-    .hero-title .accent{color:var(--cobalt);font-weight:400}
-    .hero-copy{margin-top:36px;margin-left:26vw;max-width:530px;font-size:16px;line-height:1.85;color:rgba(16,21,34,.72)}
-    .hero-cta{display:inline-flex;align-items:center;gap:18px;margin-top:42px;margin-left:26vw;padding:0;border:0;background:none;color:var(--navy);cursor:pointer;font-size:14px;letter-spacing:.02em}
-    .hero-cta .arrow{width:46px;height:46px;display:grid;place-items:center;border:1px solid var(--navy);border-radius:50%;transition:.25s ease}
-    .hero-cta:hover .arrow{background:var(--navy);color:white;transform:translateX(5px)}
-    .section-title{max-width:930px;font-size:clamp(54px,6.3vw,98px);line-height:.98;letter-spacing:-.058em;font-weight:300}
-    .section-body{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:70px;max-width:1000px}
-    .section-body p{font-size:15px;line-height:1.85;color:rgba(16,21,34,.72)}
+html{
+  scroll-behavior:smooth;
+}
 
-    .hero .big-disc{position:absolute;width:350px;height:350px;border-radius:50%;background:var(--lilac);right:17vw;top:23vh;opacity:.7;z-index:1}
-    .hero .slice{position:absolute;width:390px;height:74px;background:var(--navy);right:11vw;top:63vh;transform:rotate(-18deg);z-index:2}
-    .hero .small-block{position:absolute;width:92px;height:92px;background:var(--cobalt);left:4vw;bottom:8vh}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:
+    Pretendard,
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    sans-serif;
+}
 
-    .concept{background:var(--lilac)}
-    .concept .section-inner{display:flex;flex-direction:column;justify-content:center}
-    .concept .floating-word{position:absolute;right:11vw;top:17vh;font-size:12px;letter-spacing:.34em;color:rgba(18,26,57,.58);transform:rotate(90deg)}
-    .concept .circle-outline{position:absolute;right:17vw;bottom:7vh;width:270px;height:270px;border:1px solid var(--navy);border-radius:50%;opacity:.55}
-    .concept .block-cobalt{position:absolute;right:7vw;bottom:16vh;width:160px;height:160px;background:var(--cobalt)}
+a{
+  color:inherit;
+  text-decoration:none;
+}
 
-    .process{background:var(--navy);color:var(--ivory)}
-    .process .section-index{color:rgba(255,255,255,.55)}
-    .process .section-title{color:var(--ivory)}
-    .steps{margin-top:76px;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.28);max-width:1080px}
-    .step{min-height:220px;padding:26px 28px 20px 0;border-right:1px solid rgba(255,255,255,.18)}
-    .step:last-child{border-right:0;padding-left:28px}.step:nth-child(2){padding-left:28px}
-    .step .num{font-size:11px;letter-spacing:.25em;opacity:.5;margin-bottom:64px}
-    .step h3{font-size:26px;font-weight:300;letter-spacing:-.03em;margin-bottom:12px}
-    .step p{font-size:13px;line-height:1.7;color:rgba(255,255,255,.55);max-width:240px}
-    .process .geo-orbit{position:absolute;width:430px;height:430px;border:1px solid rgba(217,210,241,.5);border-radius:50%;right:-70px;top:130px}
-    .process .geo-dot{position:absolute;width:62px;height:62px;border-radius:50%;background:var(--lilac);right:180px;top:162px}
+img{
+  display:block;
+  width:100%;
+}
 
-    .contact{background:var(--paper);min-height:82vh}
-    .contact-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:90px;align-items:end;margin-top:100px}
-    .contact-title{font-size:clamp(58px,6.8vw,108px);line-height:.92;letter-spacing:-.065em;font-weight:300}
-    .contact-links{border-top:1px solid var(--navy)}
-    .contact-link{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(18,26,57,.24);font-size:14px}
-    .contact-link:hover{color:var(--cobalt)}
+.wrap{
+  width:min(1380px,calc(100% - 72px));
+  margin:auto;
+}
 
-    .reveal{opacity:0;transform:translateY(56px) scale(.86);transform-origin:50% 60%;filter:blur(4px);transition:opacity .78s ease,transform .9s cubic-bezier(.18,.72,.2,1),filter .72s ease;will-change:opacity,transform,filter}
-    .reveal.visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
-    @media (prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;filter:none;transition:none}}
+header{
+  height:78px;
+  display:flex;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:50;
+  backdrop-filter:blur(18px);
+  background:rgba(245,242,235,.84);
+  border-bottom:1px solid var(--line);
+}
 
-    .menu-overlay{position:fixed;inset:0;z-index:120;background:var(--navy);color:var(--ivory);display:none;opacity:0;transition:opacity .25s ease}
-    .menu-overlay.open{display:block;opacity:1}
-    .menu-top{height:76px;width:min(1440px,calc(100% - 72px));margin:auto;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.18)}
-    .menu-close{width:46px;height:46px;border:1px solid rgba(255,255,255,.35);border-radius:50%;background:none;color:white;cursor:pointer;font-size:22px;font-weight:200}
-    .menu-content{width:min(1440px,calc(100% - 72px));margin:70px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:100px}
-    .menu-list{display:flex;flex-direction:column}
-    .menu-item{display:flex;align-items:baseline;gap:24px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.18);cursor:pointer;background:none;border-left:0;border-right:0;border-top:0;color:inherit;text-align:left}
-    .menu-item .n{font-size:10px;opacity:.45;letter-spacing:.16em;width:26px}
-    .menu-item .t{font-size:clamp(38px,4.3vw,72px);font-weight:300;letter-spacing:-.05em;transition:.2s ease}
-    .menu-item:hover .t{color:var(--lilac);transform:translateX(10px)}
-    .menu-side{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:12px}
-    .menu-side p{color:rgba(255,255,255,.58);font-size:14px;line-height:1.8;max-width:430px}
-    .menu-bulb{position:relative;width:180px;height:250px;margin-bottom:50px}
-    .menu-bulb .a{width:148px;height:148px;border-radius:50%;background:var(--cobalt);position:absolute;left:0;top:0}
-    .menu-bulb .b{width:62px;height:60px;background:var(--lilac);position:absolute;left:43px;top:135px}
-    .menu-bulb .c{width:44px;height:44px;background:var(--ivory);position:absolute;left:52px;top:190px}
+.header-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .panel{position:fixed;inset:0;z-index:130;background:var(--paper);color:var(--ink);display:none;overflow:auto}.panel.open{display:block}
-    .panel-head{position:sticky;top:0;z-index:2;height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 38px;background:rgba(251,250,246,.9);backdrop-filter:blur(16px);border-bottom:1px solid rgba(18,26,57,.14)}
-    .panel-close{width:42px;height:42px;border-radius:50%;border:1px solid var(--navy);background:none;cursor:pointer;font-size:20px}
-    .panel-body{padding:70px 8vw 110px}.panel-title{font-size:clamp(56px,7vw,110px);font-weight:300;letter-spacing:-.06em;line-height:.95}
-    .portfolio-empty{margin-top:70px;min-height:500px;border:1px solid rgba(18,26,57,.28);background:white;display:grid;place-items:center;color:rgba(18,26,57,.45);text-align:center;position:relative}
-    .portfolio-empty::before,.portfolio-empty::after{content:"";position:absolute;background:rgba(18,26,57,.18)}.portfolio-empty::before{width:1px;height:100%;left:50%;top:0}.portfolio-empty::after{height:1px;width:100%;left:0;top:50%}
-    .portfolio-empty span{background:white;z-index:1;padding:16px 24px;font-size:12px;letter-spacing:.12em}
-    .price-list{margin-top:70px;border-top:1px solid var(--navy);max-width:1100px}.price-row{display:grid;grid-template-columns:1.2fr .8fr .4fr;gap:30px;align-items:center;padding:26px 0;border-bottom:1px solid rgba(18,26,57,.2)}
-    .price-row strong{font-size:24px;font-weight:400;letter-spacing:-.03em}.price-row span{font-size:13px;color:rgba(18,26,57,.6)}.price-row b{justify-self:end;font-size:22px;font-weight:400}
+.logo{
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.18em;
+}
 
-    @media(max-width:980px){.section{padding-left:32px;padding-right:120px}.section-inner{width:auto}.hero-copy,.hero-cta{margin-left:0}.section-body{grid-template-columns:1fr;gap:20px}.steps{grid-template-columns:1fr}.step{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding-left:0!important}.contact-grid{grid-template-columns:1fr}.menu-content{grid-template-columns:1fr}.menu-side{display:none}.price-row{grid-template-columns:1fr}.price-row b{justify-self:start}}
-  </style>
+nav{
+  display:flex;
+  gap:30px;
+  font-size:12px;
+}
+
+nav a{
+  opacity:.65;
+}
+
+nav a:hover{
+  opacity:1;
+  color:var(--blue);
+}
+
+section{
+  padding:120px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.eyebrow{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.25em;
+  margin-bottom:24px;
+  opacity:.5;
+}
+
+.hero{
+  min-height:calc(100vh - 78px);
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero h1{
+  font-size:clamp(62px,8vw,130px);
+  line-height:.92;
+  letter-spacing:-.07em;
+  font-weight:400;
+  margin:0;
+  max-width:1100px;
+}
+
+.hero h1 span{
+  color:var(--blue);
+}
+
+.hero p{
+  margin:42px 0 0 36%;
+  max-width:580px;
+  font-size:17px;
+  line-height:1.8;
+  opacity:.7;
+}
+
+.hero-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:34px 0 0 36%;
+}
+
+.tag{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:8px 13px;
+  font-size:11px;
+}
+
+.hero-shape{
+  position:absolute;
+  width:420px;
+  height:420px;
+  border-radius:50%;
+  background:var(--purple);
+  right:-100px;
+  top:100px;
+  z-index:-1;
+  opacity:.55;
+}
+
+.section-head{
+  display:grid;
+  grid-template-columns:.45fr 1fr;
+  gap:50px;
+  align-items:start;
+  margin-bottom:70px;
+}
+
+.section-head h2{
+  margin:0;
+  font-size:clamp(45px,6vw,88px);
+  line-height:.95;
+  letter-spacing:-.055em;
+  font-weight:400;
+}
+
+.section-head p{
+  max-width:600px;
+  line-height:1.8;
+  opacity:.65;
+  margin:10px 0 0;
+}
+
+/* ========================
+   WORKS
+======================== */
+
+.works{
+  background:var(--paper);
+}
+
+.featured-work{
+  display:grid;
+  grid-template-columns:1.2fr .8fr;
+  gap:60px;
+  align-items:center;
+}
+
+.featured-image{
+  background:#111;
+  overflow:hidden;
+}
+
+.featured-image img{
+  aspect-ratio:2/3;
+  object-fit:cover;
+  transition:.6s ease;
+}
+
+.featured-image:hover img{
+  transform:scale(1.025);
+}
+
+.work-number{
+  font-size:11px;
+  letter-spacing:.18em;
+  opacity:.4;
+  margin-bottom:20px;
+}
+
+.work-tag{
+  font-size:11px;
+  letter-spacing:.17em;
+  color:var(--blue);
+  font-weight:700;
+}
+
+.featured-info h3{
+  font-size:clamp(46px,5vw,80px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  margin:18px 0 25px;
+  font-weight:400;
+}
+
+.featured-info .award{
+  display:inline-block;
+  background:var(--navy);
+  color:white;
+  padding:10px 14px;
+  margin-bottom:25px;
+  font-size:12px;
+}
+
+.featured-info p{
+  font-size:15px;
+  line-height:1.85;
+  opacity:.68;
+}
+
+.award-proof{
+  margin-top:35px;
+  display:grid;
+  grid-template-columns:130px 1fr;
+  gap:20px;
+  align-items:center;
+  border-top:1px solid var(--line);
+  padding-top:24px;
+}
+
+.award-proof img{
+  aspect-ratio:1;
+  object-fit:cover;
+}
+
+.award-proof strong{
+  display:block;
+  margin-bottom:7px;
+}
+
+.award-proof span{
+  font-size:12px;
+  opacity:.6;
+}
+
+.secondary-work{
+  margin-top:110px;
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:55px;
+  align-items:center;
+}
+
+.secondary-work img{
+  max-height:820px;
+  object-fit:cover;
+}
+
+.secondary-info h3{
+  font-size:clamp(36px,4vw,64px);
+  line-height:1.05;
+  letter-spacing:-.045em;
+  font-weight:400;
+  margin:14px 0 20px;
+}
+
+.secondary-info p{
+  line-height:1.8;
+  opacity:.65;
+}
+
+.gallery-grid{
+  margin-top:110px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+}
+
+.gallery-card{
+  border-top:1px solid var(--ink);
+  padding-top:18px;
+}
+
+.gallery-card img{
+  aspect-ratio:4/3;
+  object-fit:cover;
+  margin-bottom:22px;
+}
+
+.gallery-card h3{
+  font-size:28px;
+  letter-spacing:-.035em;
+  margin:8px 0;
+  font-weight:500;
+}
+
+.gallery-card p{
+  font-size:13px;
+  line-height:1.7;
+  opacity:.62;
+}
+
+/* ========================
+   PROJECTS
+======================== */
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+
+.project{
+  background:var(--bg);
+  padding:42px;
+  min-height:350px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  transition:.25s;
+}
+
+.project:hover{
+  background:var(--navy);
+  color:white;
+}
+
+.project-index{
+  font-size:10px;
+  opacity:.5;
+}
+
+.project h3{
+  font-size:40px;
+  letter-spacing:-.04em;
+  font-weight:400;
+  margin:0 0 14px;
+}
+
+.project p{
+  max-width:430px;
+  font-size:14px;
+  line-height:1.75;
+  opacity:.65;
+}
+
+.project-tags{
+  margin-top:25px;
+  font-size:10px;
+  letter-spacing:.15em;
+  opacity:.55;
+}
+
+.more-projects{
+  margin-top:28px;
+  display:flex;
+  justify-content:flex-end;
+}
+
+.more-link{
+  border-bottom:1px solid var(--ink);
+  padding-bottom:5px;
+  font-size:13px;
+}
+
+/* ========================
+   ABOUT
+======================== */
+
+.about{
+  background:var(--purple);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:100px;
+}
+
+.about h2{
+  font-size:clamp(55px,6vw,95px);
+  line-height:.95;
+  margin:0;
+  letter-spacing:-.055em;
+  font-weight:400;
+}
+
+.about-copy{
+  font-size:17px;
+  line-height:1.9;
+}
+
+.about-copy p + p{
+  margin-top:22px;
+}
+
+.timeline{
+  margin-top:90px;
+}
+
+.timeline-row{
+  display:grid;
+  grid-template-columns:150px 190px 1fr;
+  gap:30px;
+  border-top:1px solid rgba(18,22,42,.3);
+  padding:26px 0;
+}
+
+.timeline-year,
+.timeline-type{
+  font-size:11px;
+  letter-spacing:.1em;
+}
+
+.timeline-type{
+  opacity:.55;
+}
+
+.timeline-row h3{
+  margin:0 0 7px;
+  font-size:22px;
+}
+
+.timeline-row p{
+  font-size:13px;
+  opacity:.65;
+  line-height:1.7;
+}
+
+/* ========================
+   ACTIVITY
+======================== */
+
+.activity-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+
+.activity-card{
+  min-height:300px;
+  border:1px solid var(--line);
+  padding:35px;
+  position:relative;
+}
+
+.activity-card .big{
+  font-size:68px;
+  letter-spacing:-.06em;
+  color:var(--blue);
+  margin-bottom:40px;
+}
+
+.activity-card h3{
+  font-size:28px;
+  margin:0 0 13px;
+  letter-spacing:-.03em;
+}
+
+.activity-card p{
+  line-height:1.7;
+  opacity:.62;
+  font-size:14px;
+}
+
+/* ========================
+   CONTACT
+======================== */
+
+.contact{
+  background:var(--navy);
+  color:white;
+}
+
+.contact h2{
+  margin:0;
+  font-size:clamp(60px,8vw,120px);
+  font-weight:400;
+  letter-spacing:-.065em;
+  line-height:.93;
+}
+
+.contact-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:40px;
+}
+
+.contact-links{
+  min-width:330px;
+}
+
+.contact-links a{
+  display:flex;
+  justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.35);
+  padding:16px 0;
+  font-size:13px;
+}
+
+.contact-links a:last-child{
+  border-bottom:1px solid rgba(255,255,255,.35);
+}
+
+footer{
+  background:var(--navy);
+  color:white;
+  border-top:1px solid rgba(255,255,255,.15);
+  padding:25px 0;
+  font-size:10px;
+  letter-spacing:.14em;
+  opacity:.7;
+}
+
+@media(max-width:900px){
+
+  .wrap{
+    width:min(100% - 36px,1380px);
+  }
+
+  nav{
+    display:none;
+  }
+
+  section{
+    padding:85px 0;
+  }
+
+  .hero{
+    min-height:auto;
+    padding:130px 0 100px;
+  }
+
+  .hero p,
+  .hero-tags{
+    margin-left:0;
+  }
+
+  .section-head,
+  .featured-work,
+  .secondary-work,
+  .about-grid,
+  .contact-row{
+    grid-template-columns:1fr;
+    display:grid;
+  }
+
+  .featured-work,
+  .secondary-work{
+    gap:35px;
+  }
+
+  .gallery-grid,
+  .projects-grid,
+  .activity-grid{
+    grid-template-columns:1fr;
+  }
+
+  .timeline-row{
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  .project{
+    min-height:270px;
+  }
+
+}
+</style>
 </head>
+
 <body>
-  <header class="header"><div class="header-inner"><a href="#top" class="brand">IDEA VECTOR<small>WEB / APP / AI STUDIO</small></a><button class="hamburger" aria-label="메뉴 열기" onclick="openMenu()"><span></span></button></div></header>
 
-  <div class="bulb-rail" aria-hidden="true"><div class="bulb-track-label">IDEA RISING / SCROLL</div><div class="bulb" id="scrollBulb"><div class="bulb-globe"></div><div class="bulb-neck"></div><div class="bulb-base"></div></div></div>
+<header>
+  <div class="wrap header-inner">
 
-  <main id="top">
-    <section class="section hero">
-      <div class="big-disc"></div><div class="slice"></div><div class="small-block"></div><div class="geo-line" style="width:520px;left:7vw;top:28vh;transform:rotate(13deg)"></div>
-      <div class="section-inner"><div class="section-index reveal">IDEA VECTOR / 2026</div><h1 class="hero-title reveal">생각은 <span class="accent">방향</span>을<br>얻는 순간<br>제품이 됩니다.</h1><p class="hero-copy reveal">아이디어 벡터는 아이디어를 설명으로 끝내지 않습니다. 웹, 앱, AI 기능을 실제로 작동하는 화면과 구조로 바꾸는 제작 스튜디오입니다.</p><button class="hero-cta reveal" onclick="document.querySelector('#concept').scrollIntoView({behavior:'smooth'})">더 내려가 보기<span class="arrow">↘</span></button></div>
-    </section>
+    <a class="logo" href="#top">
+      IDEA VECTOR
+    </a>
 
-    <section class="section concept" id="concept"><div class="floating-word">FORM · DIRECTION · MOTION</div><div class="circle-outline"></div><div class="block-cobalt"></div><div class="geo-line" style="width:390px;left:8vw;bottom:12vh;transform:rotate(-9deg)"></div><div class="section-inner"><div class="section-index reveal">01 / CONCEPT</div><h2 class="section-title reveal">떠오른 생각을<br>형태로 바꿉니다.</h2><div class="section-body"><p class="reveal">둥근 카드와 화려한 그라데이션 대신, 선과 면 그리고 방향으로 화면을 구성합니다. 필요한 정보만 남기고 서비스 자체가 기억되도록 만듭니다.</p><p class="reveal">스크롤을 따라 올라가는 전구는 ‘생각이 떠오르는 과정’을 표현합니다. 원, 직사각형, 작은 정사각형만으로 만들어진 하나의 브랜드 오브젝트입니다.</p></div></div></section>
+    <nav>
+      <a href="#works">WORKS</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#about">ABOUT</a>
+      <a href="#activity">ACTIVITY</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
 
-    <section class="section process"><div class="geo-orbit"></div><div class="geo-dot"></div><div class="section-inner"><div class="section-index reveal">02 / PROCESS</div><h2 class="section-title reveal">Idea → Structure → Product</h2><div class="steps"><article class="step reveal"><div class="num">01 / IDEA</div><h3>생각을 받습니다.</h3><p>만들고 싶은 기능, 참고 사이트, 간단한 설명에서 시작합니다.</p></article><article class="step reveal"><div class="num">02 / STRUCTURE</div><h3>구조를 잡습니다.</h3><p>기능과 화면을 정리하고 실제로 구현할 수 있는 형태로 바꿉니다.</p></article><article class="step reveal"><div class="num">03 / PRODUCT</div><h3>작동하게 만듭니다.</h3><p>보여주기 위한 시안이 아니라 사용할 수 있는 결과물까지 연결합니다.</p></article></div></div></section>
+  </div>
+</header>
 
-    <section class="section contact"><div class="section-inner"><div class="section-index reveal">03 / CONTACT</div><div class="contact-grid"><h2 class="contact-title reveal">생각이 있다면,<br>이제 움직일<br>차례입니다.</h2><div class="contact-links reveal"><a class="contact-link" href="https://www.daangn.com/kr/local-profile/wubqbg3addip/?referrer=share" target="_blank" rel="noopener noreferrer"><span>당근마켓 상담</span><span>↗</span></a><a class="contact-link" href="https://www.instagram.com/ideawebvector/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>↗</span></a><button class="contact-link" style="width:100%;background:none;border-left:0;border-right:0;border-top:0;cursor:pointer" onclick="openPortfolio()"><span>Portfolio</span><span>↗</span></button></div></div></div></section>
-  </main>
 
-  <div class="menu-overlay" id="menuOverlay"><div class="menu-top"><div class="brand">IDEA VECTOR<small>MENU</small></div><button class="menu-close" onclick="closeMenu()">×</button></div><div class="menu-content"><div class="menu-list"><button class="menu-item" onclick="closeMenu();openPortfolio()"><span class="n">01</span><span class="t">Portfolio</span></button><button class="menu-item" onclick="closeMenu();openPricing()"><span class="n">02</span><span class="t">Pricing</span></button><a class="menu-item" href="https://www.daangn.com/kr/local-profile/wubqbg3addip/?referrer=share" target="_blank" rel="noopener noreferrer"><span class="n">03</span><span class="t">Contact</span></a><a class="menu-item" href="https://www.instagram.com/ideawebvector/" target="_blank" rel="noopener noreferrer"><span class="n">04</span><span class="t">Instagram</span></a></div><div class="menu-side"><div class="menu-bulb" aria-hidden="true"><div class="a"></div><div class="b"></div><div class="c"></div></div><p>아이디어를 방향이 있는 형태로 바꾸고, 실제로 작동하는 웹과 앱으로 연결합니다.</p></div></div></div>
+<main id="top">
 
-  <section class="panel" id="portfolioPanel"><div class="panel-head"><span class="brand">IDEA VECTOR / PORTFOLIO</span><button class="panel-close" onclick="closePanel('portfolioPanel')">×</button></div><div class="panel-body"><h2 class="panel-title">Selected<br>Works.</h2><div class="portfolio-empty"><span>PORTFOLIO CANVAS — 작업물 추가 예정</span></div></div></section>
+<!-- INTRO -->
 
-  <section class="panel" id="pricingPanel"><div class="panel-head"><span class="brand">IDEA VECTOR / PRICING</span><button class="panel-close" onclick="closePanel('pricingPanel')">×</button></div><div class="panel-body"><h2 class="panel-title">Simple<br>Pricing.</h2><div class="price-list"><div class="price-row"><strong>웹 · 앱 프로토타입</strong><span>기본 화면 및 기능 구현</span><b>50,000원~</b></div><div class="price-row"><strong>반응형 웹페이지</strong><span>메뉴판 · 안내문 · 간단한 동적 기능</span><b>80,000원~</b></div><div class="price-row"><strong>정적 디자인</strong><span>안내 이미지 · 이벤트 게시물 · PDF</span><b>30,000원~</b></div><div class="price-row"><strong>인포그래픽</strong><span>데이터 및 정보 시각화</span><b>문의</b></div></div></div></section>
+<section class="hero">
 
-  <script>
-    const menu=document.getElementById('menuOverlay');const bulb=document.getElementById('scrollBulb');
-    function openMenu(){menu.classList.add('open');document.body.classList.add('menu-open')}
-    function closeMenu(){menu.classList.remove('open');document.body.classList.remove('menu-open')}
-    function openPortfolio(){document.getElementById('portfolioPanel').classList.add('open');document.body.classList.add('menu-open')}
-    function openPricing(){document.getElementById('pricingPanel').classList.add('open');document.body.classList.add('menu-open')}
-    function closePanel(id){document.getElementById(id).classList.remove('open');document.body.classList.remove('menu-open')}
-    function updateBulb(){const maxScroll=document.documentElement.scrollHeight-window.innerHeight;const progress=maxScroll>0?window.scrollY/maxScroll:0;const rail=document.querySelector('.bulb-rail');const travel=Math.max(0,rail.clientHeight-150);const y=-travel*progress;const rotation=-7+progress*14;bulb.style.transform=`translateY(${y}px) rotate(${rotation}deg)`}
-    window.addEventListener('scroll',updateBulb,{passive:true});window.addEventListener('resize',updateBulb);updateBulb();
-    const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.16});
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-    document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){closeMenu();['portfolioPanel','pricingPanel'].forEach(id=>document.getElementById(id).classList.remove('open'));document.body.classList.remove('menu-open')}});
-  </script>
+  <div class="hero-shape"></div>
+
+  <div class="wrap">
+
+    <div class="eyebrow">
+      IDEA VECTOR / PORTFOLIO 2026
+    </div>
+
+    <h1>
+      생각을 만들고,<br>
+      <span>보이게</span> 합니다.
+    </h1>
+
+    <p>
+      AI, 이미지, 웹, 글쓰기를 오가며
+      떠오른 아이디어를 실제 작품과 프로젝트로 구현합니다.
+      하나의 분야에 머무르기보다 새로운 형식과 표현을
+      직접 실험하는 것을 좋아합니다.
+    </p>
+
+    <div class="hero-tags">
+      <div class="tag">AI ART</div>
+      <div class="tag">VISUAL</div>
+      <div class="tag">WEB</div>
+      <div class="tag">WRITING</div>
+      <div class="tag">EXPERIMENT</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- WORKS -->
+
+<section class="works" id="works">
+
+<div class="wrap">
+
+  <div class="section-head">
+
+    <div>
+      <div class="eyebrow">
+        01 / SELECTED WORKS
+      </div>
+    </div>
+
+    <div>
+      <h2>작품집.</h2>
+
+      <p>
+        AI와 이미지, 이야기와 콘셉트를 이용해 만든 작업들입니다.
+        완성된 이미지만큼 하나의 생각을 시각적인 언어로
+        옮기는 과정 자체에 관심이 있습니다.
+      </p>
+    </div>
+
+  </div>
+
+
+  <!-- MAIN WORK -->
+
+  <article class="featured-work">
+
+    <div class="featured-image">
+
+      <img
+        src="assets/works/hangul-world.png"
+        alt="한글로 세상을 쓰다"
+      >
+
+    </div>
+
+    <div class="featured-info">
+
+      <div class="work-number">
+        01 / FEATURED
+      </div>
+
+      <div class="work-tag">
+        AWARD · AI ART · 2026
+      </div>
+
+      <h3>
+        한글로<br>
+        세상을 쓰다
+      </h3>
+
+      <div class="award">
+        2026 한글 AI 아트 창작 공모전 · 최우수상
+      </div>
+
+      <p>
+        한글의 자형과 전통적인 동양 회화의 공간,
+        그리고 미래적인 도시 이미지를 결합한 AI 아트 작품입니다.
+        문자 자체가 건축물이 되고 도시가 되는 장면을 통해
+        한글이 과거의 기록을 넘어 새로운 세계를 만드는
+        시각 언어가 될 수 있다는 생각을 표현했습니다.
+      </p>
+
+      <div class="award-proof">
+
+        <img
+          src="assets/works/award-result.png"
+          alt="2026 한글 AI 아트 창작공모전 수상작 발표"
+        >
+
+        <div>
+          <strong>
+            이미지 분야 최우수상
+          </strong>
+
+          <span>
+            「한글로 세상을 쓰다」
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  <!-- SECOND WORK -->
+
+  <article class="secondary-work">
+
+    <div class="secondary-info">
+
+      <div class="work-number">
+        02 / COMPETITION
+      </div>
+
+      <div class="work-tag">
+        NEXT AI · AI ART · 2026
+      </div>
+
+      <h3>
+        규격 외 —<br>
+        새장에서 세상을 꿈꾸다
+      </h3>
+
+      <p>
+        반복되는 시험 공간과 거대한 원형 구조,
+        그 틀을 벗어나려는 한 인물을 통해
+        획일적인 규격과 개인의 이탈을 시각화한 작품입니다.
+      </p>
+
+    </div>
+
+    <img
+      src="assets/works/next-ai.png"
+      alt="규격 외 - 새장에서 세상을 꿈꾸다"
+    >
+
+  </article>
+
+
+  <!-- SMALL WORKS -->
+
+  <div class="gallery-grid">
+
+    <article class="gallery-card">
+
+      <img
+        src="assets/works/grade-con.png"
+        alt="재미로 보는 등급콘"
+      >
+
+      <div class="work-tag">
+        CHARACTER · VISUAL CONTENT
+      </div>
+
+      <h3>
+        재미로 보는 등급콘
+      </h3>
+
+      <p>
+        성적이라는 무거운 소재를
+        아홉 단계의 감정 캐릭터로 재해석한 작업.
+      </p>
+
+    </article>
+
+
+    <article class="gallery-card">
+
+      <img
+        src="assets/works/ai-girlfriend.png"
+        alt="AI가 여자친구가 된다면?"
+      >
+
+      <div class="work-tag">
+        CHARACTER · AI CULTURE
+      </div>
+
+      <h3>
+        AI가 여자친구가 된다면?
+      </h3>
+
+      <p>
+        서로 다른 생성형 AI의 이미지와 성격을
+        캐릭터 디자인이라는 형식으로 재해석한 개인 작업.
+      </p>
+
+    </article>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<div class="wrap">
+
+  <div class="section-head">
+
+    <div>
+      <div class="eyebrow">
+        02 / PROJECTS
+      </div>
+    </div>
+
+    <div>
+      <h2>만든 것들.</h2>
+
+      <p>
+        앱과 웹은 목적 자체라기보다
+        아이디어를 실제로 작동하게 만드는 또 하나의 표현 방식입니다.
+        대표 프로젝트 네 개만 선별했습니다.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="projects-grid">
+
+    <article class="project">
+
+      <div class="project-index">
+        01
+      </div>
+
+      <div>
+        <h3>SPOT</h3>
+
+        <p>
+          소비 기록을 바탕으로 식비 패턴을 분석하고
+          더 나은 소비를 돕는 데이터 기반 프로젝트.
+          HyperBloom Hackathon에서 협업 프로젝트로 개발했습니다.
+        </p>
+
+        <div class="project-tags">
+          DATA · FOOD · WEB · HACKATHON
+        </div>
+      </div>
+
+    </article>
+
+
+    <article class="project">
+
+      <div class="project-index">
+        02
+      </div>
+
+      <div>
+        <h3>MindVector</h3>
+
+        <p>
+          사람 사이의 감정과 관계를 구조화하고
+          시각적으로 분석하는 인터랙티브 AI 프로젝트.
+        </p>
+
+        <div class="project-tags">
+          AI · EMOTION · INTERACTIVE
+        </div>
+      </div>
+
+    </article>
+
+
+    <article class="project">
+
+      <div class="project-index">
+        03
+      </div>
+
+      <div>
+        <h3>NovelVector</h3>
+
+        <p>
+          관계를 하나의 은하처럼 표현하고
+          사람 사이의 연결을 탐색하도록 설계한
+          관계 시각화 프로젝트.
+        </p>
+
+        <div class="project-tags">
+          RELATIONSHIP · AI · VISUALIZATION
+        </div>
+      </div>
+
+    </article>
+
+
+    <article class="project">
+
+      <div class="project-index">
+        04
+      </div>
+
+      <div>
+        <h3>MoralVector</h3>
+
+        <p>
+          상황형 질문과 선택을 이용해
+          개인의 가치 판단 경향을 탐색하는
+          인터랙티브 테스트 프로젝트.
+        </p>
+
+        <div class="project-tags">
+          INTERACTIVE · VALUES · WEB
+        </div>
+      </div>
+
+    </article>
+
+  </div>
+
+
+  <div class="more-projects">
+
+    <a class="more-link" href="projects.html">
+      전체 프로젝트 더보기 →
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+<div class="wrap">
+
+  <div class="eyebrow">
+    03 / ABOUT ME
+  </div>
+
+
+  <div class="about-grid">
+
+    <h2>
+      저를<br>
+      소개합니다.
+    </h2>
+
+    <div class="about-copy">
+
+      <p>
+        글을 쓰는 것에서 시작해 AI, 웹,
+        시각 디자인과 인터랙티브 프로젝트까지
+        관심사를 직접 결과물로 만들어 왔습니다.
+      </p>
+
+      <p>
+        하나의 분야에 자신을 고정하기보다는
+        새로운 아이디어를 빠르게 실험하고,
+        그 아이디어에 가장 어울리는 형식을 찾는 것을 좋아합니다.
+      </p>
+
+      <p>
+        어떤 생각은 웹 서비스가 되고,
+        어떤 생각은 이미지가 되며,
+        어떤 생각은 소설이나 실험적인 콘텐츠가 됩니다.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="timeline">
+
+
+    <div class="timeline-row">
+
+      <div class="timeline-year">
+        2024 — PRESENT
+      </div>
+
+      <div class="timeline-type">
+        WRITING
+      </div>
+
+      <div>
+        <h3>젤작학교 라이트</h3>
+        <p>소설 집필 및 연재.</p>
+      </div>
+
+    </div>
+
+
+    <div class="timeline-row">
+
+      <div class="timeline-year">
+        2026
+      </div>
+
+      <div class="timeline-type">
+        WRITING / SERIAL
+      </div>
+
+      <div>
+        <h3>수학독학</h3>
+        <p>수학과 서사를 결합한 창작 프로젝트.</p>
+      </div>
+
+    </div>
+
+
+    <div class="timeline-row">
+
+      <div class="timeline-year">
+        2026.07
+      </div>
+
+      <div class="timeline-type">
+        BUILDING
+      </div>
+
+      <div>
+        <h3>IdeaVector 프로젝트 활동 시작</h3>
+
+        <p>
+          AI와 웹을 이용한 개인 프로젝트를
+          실제 서비스와 콘텐츠로 확장하기 시작했습니다.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="timeline-row">
+
+      <div class="timeline-year">
+        2026.09
+      </div>
+
+      <div class="timeline-type">
+        HACKATHON
+      </div>
+
+      <div>
+        <h3>HyperBloom Hackathon</h3>
+
+        <p>
+          SPOT 프로젝트를 기반으로
+          협업 프로젝트에 참여했습니다.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="timeline-row">
+
+      <div class="timeline-year">
+        2026
+      </div>
+
+      <div class="timeline-type">
+        AWARD / AI ART
+      </div>
+
+      <div>
+        <h3>2026 한글 AI 아트 창작 공모전 최우수상</h3>
+
+        <p>
+          「한글로 세상을 쓰다」로
+          이미지 분야 최우수상을 수상했습니다.
+        </p>
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- ACTIVITY -->
+
+<section id="activity">
+
+<div class="wrap">
+
+  <div class="section-head">
+
+    <div>
+      <div class="eyebrow">
+        04 / ACTIVITY
+      </div>
+    </div>
+
+    <div>
+      <h2>
+        만들고,<br>
+        실험합니다.
+      </h2>
+    </div>
+
+  </div>
+
+
+  <div class="activity-grid">
+
+
+    <article class="activity-card">
+
+      <div class="big">
+        BUILD
+      </div>
+
+      <h3>
+        아이디어를 구현합니다.
+      </h3>
+
+      <p>
+        웹과 AI를 이용해 생각을
+        실제로 작동하는 프로젝트로 만듭니다.
+      </p>
+
+    </article>
+
+
+    <article class="activity-card">
+
+      <div class="big">
+        CREATE
+      </div>
+
+      <h3>
+        이미지로 표현합니다.
+      </h3>
+
+      <p>
+        AI 이미지 생성과 디자인을 이용해
+        생각과 이야기를 하나의 시각 작품으로 만듭니다.
+      </p>
+
+    </article>
+
+
+    <article class="activity-card">
+
+      <div class="big">
+        WRITE
+      </div>
+
+      <h3>
+        이야기를 씁니다.
+      </h3>
+
+      <p>
+        소설과 콘텐츠를 통해
+        기술과 사람, 학교와 사회에 관한 이야기를 만듭니다.
+      </p>
+
+    </article>
+
+
+    <article class="activity-card">
+
+      <div class="big">
+        COLLAB
+      </div>
+
+      <h3>
+        함께 실험합니다.
+      </h3>
+
+      <p>
+        해커톤과 협업 프로젝트에서
+        서로 다른 아이디어와 기술을 연결합니다.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+<div class="wrap contact-row">
+
+  <div>
+
+    <div class="eyebrow">
+      05 / CONTACT
+    </div>
+
+    <h2>
+      재미있는<br>
+      생각이 있다면.
+    </h2>
+
+  </div>
+
+
+  <div class="contact-links">
+
+    <a href="mailto:ideavector1031@gmail.com">
+
+      <span>
+        EMAIL
+      </span>
+
+      <span>
+        ↗
+      </span>
+
+    </a>
+
+
+    <a
+      href="https://github.com/nO-vEL-wRitEr"
+      target="_blank"
+    >
+
+      <span>
+        GITHUB
+      </span>
+
+      <span>
+        ↗
+      </span>
+
+    </a>
+
+  </div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="wrap">
+  IDEA VECTOR · BUILD · CREATE · WRITE · EXPERIMENT
+</div>
+
+</footer>
+
 </body>
 </html>
